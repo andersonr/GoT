@@ -19,3 +19,6 @@ export const FACEBOOK_LOGIN_SUCCESS = 'facebook_login_success';
 export const FACEBOOK_LOGIN_FAIL = 'facebook_login_fail';
 
 export const USERDETAILS_FETCH_SUCCESS = 'userdetails_fetch_success';
+
+
+export const APOSTA_REALIZADA_SUCCESS = 'aposta_realizada_success';

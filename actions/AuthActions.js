@@ -16,7 +16,8 @@ import {
   FONT_LOADED_CHANGED,
   SIGNUP_USER,
   ERROR_SET,
-  RESET_USER
+  RESET_USER,
+  APOSTA_REALIZADA_SUCCESS
 } from './types';
 
 import NavigatorService from './../utils/navigator';
@@ -228,8 +229,6 @@ export const authStateChanged = () => {
   }
 
 }
-
-
 
 const loginUserFail = (dispatch, err_message) => {
   dispatch({

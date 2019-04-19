@@ -3,6 +3,13 @@ import Swiper from "react-native-deck-swiper";
 import { StyleSheet, View, Text, Image, Button } from "react-native";
 import { Constants } from 'expo';
 import { personagens } from '../utils/personagens';
+import {FontAwesome} from './../assets/icons';
+import {
+  RkText,
+  RkCard,
+  RkStyleSheet,
+  RkTheme
+} from 'react-native-ui-kitten';
 
 export default class Deck_Screen extends React.Component {
     constructor(props) {
@@ -14,12 +21,77 @@ export default class Deck_Screen extends React.Component {
         cardIndex: 0
       };
     }
+
+    static navigationOptions = {
+      headerTitle: 'Items',
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => (
+        <RkText
+          rkType='awesome'
+          style={{
+            color: tintColor,
+            fontSize: 24,
+            marginBottom: 0,
+          }}>
+            {FontAwesome.comment}
+        </RkText>
+      ),
+    };
+  
+    toLeft = index => {
+      const personagemSelecionado = personagens[index];
+      console. log('<<<<<  para esquerda ' + JSON.stringify(personagemSelecionado.nome));
+
+      RealizarAposta(personagemSelecionado, false);
+    };
+
+    toRight = index => {      
+      const personagemSelecionado = personagens[index];
+      console. log('>>>>>  para direita ' + JSON.stringify(personagemSelecionado.nome));
+
+      RealizarAposta(personagemSelecionado, true);
+    };
+
+    toTop = index => {
+      const personagemSelecionado = personagens[index];
+      console. log('^^^^^^ para cima: ' + JSON.stringify(personagemSelecionado.nome));
+      
+      RealizarAposta(personagemSelecionado, true);
+      //Fazer aposta como rei de westeros
+    };
+
+    RealizarAposta(personagem, isVivo){
+      //Fazer rotina salvar na base local
+      //Fazer rotina salvar no firebase
+
+    }
+  
   
     renderCard = card => {
       return (
         <View style={styles.card}>
-          <Image style={{ width: 320, height: 320 }} source={{ uri: card.image }} />
-          <Text style={styles.text}>{card.name}</Text>
+          <Image style={{ width: 320, height: 420 }} source={{ uri: card.image }} />
+          <Text style={styles.text}>{card.nome}</Text>
+          <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between"}} >
+              <RkText
+                rkType='awesome'
+                style={{
+                  color: 'red',
+                  fontSize: 24,
+                  marginBottom: 0,
+                }}>
+                {FontAwesome.chevronLeft}
+            </RkText>
+            <RkText
+                rkType='awesome'
+                style={{
+                  color: 'green',
+                  fontSize: 24,
+                  marginBottom: 0,
+                }}>
+                {FontAwesome.chevronRight}
+            </RkText>
+          </View>
         </View>
       );
     };
@@ -54,32 +126,54 @@ export default class Deck_Screen extends React.Component {
     };
   
     render() {
+      if(this.state.swipedAllCards)
+      {
+        return (
+          <View>
+             <RkCard rkType='shadowed'>
+                <View rkCardHeader>
+                  <RkText rkType='header'>Todas as apostas realizadas!</RkText>
+                </View>
+                <View rkCardContent>
+                  <RkText style={{textAlign:'center'}}>
+                    Você tem 30 minutos para alterar as apostas através do painel de apostas.
+                    Após esse tempo, não será mais possível alterar as suas apostas.
+                  </RkText>
+                </View>
+             </RkCard>
+          </View>
+        );
+      }
+
       return (
-        <View style={styles.container}>
+        <View style={{ backgroundColor: 'black' }}>
           <Swiper
             useViewOverflow={false}
             style={styles.swiper}
             ref={swiper => {
               this.swiper = swiper;
             }}
-            onSwiped={this.onSwiped}
+            onSwipedTop={this.toTop}
+            onSwipedLeft = {this.toLeft}
+            onSwipedRight = {this.toRight}
             cards={personagens}
             cardIndex={this.state.cardIndex}
-            cardVerticalMargin={80}
+            cardVerticalMargin={5}
             renderCard={this.renderCard}
             onSwipedAll={this.onSwipedAllCards}
             showSecondCard={false}
-            verticalSwipe={false}
+            verticalSwipe={true}
             showSecondCard
+            disableBottomSwipe={true}
             stackSize={2}
-            backgroundColor={'#cecece'}
+            backgroundColor={'red'}
             overlayLabels={{
               left: {
                 title: 'Morre',
                   style: {
                     label: {
-                      backgroundColor: 'black',
-                      borderColor: 'black',
+                      backgroundColor: 'red',
+                      borderColor: 'red',
                       color: 'white',
                       borderWidth: 1
                     },
@@ -96,7 +190,7 @@ export default class Deck_Screen extends React.Component {
                 title: 'Vive',
                   style: {
                     label: {
-                      backgroundColor: 'black',
+                      backgroundColor: 'green',
                       borderColor: 'black',
                       color: 'white',
                       borderWidth: 1
@@ -110,6 +204,22 @@ export default class Deck_Screen extends React.Component {
                     }
                   }
                 },
+                top: {
+                  title: 'Rei de Westeros',                  
+                  style: {
+                    label: {
+                      backgroundColor: '#cbc04d',
+                      borderColor: '#cbc04d',
+                      color: 'white',
+                      borderWidth: 1
+                    },
+                    wrapper: {
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }
+                  }
+                }
             }}
           >
           </Swiper>
@@ -125,20 +235,24 @@ export default class Deck_Screen extends React.Component {
       backgroundColor: "#FFFFFF",
     },
     swiper: {
-      paddingTop: Constants.statusBarHeight,
+      paddingTop: Constants.statusBarHeight      
     },
     card: {
       flex: 1,
       borderRadius: 4,
       borderWidth: 2,
       borderColor: "#E8E8E8",
-      justifyContent: "center",
-      backgroundColor: "white",
-      alignItems: 'center'
+      justifyContent: "flex-start",
+      backgroundColor: "black",
+      alignItems: 'center',
+      flexDirection: 'column'
     },
     text: {
       textAlign: "center",
-      fontSize: 50,
-      backgroundColor: "transparent"
+      fontSize: 40,
+      color: 'white',
+      fontWeight: 'bold',
+      marginTop: 20,
+      backgroundColor: "transparent"      
     },
   });
