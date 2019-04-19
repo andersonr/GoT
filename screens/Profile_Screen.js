@@ -103,12 +103,12 @@ class ProfileScreen extends Component {
         <LoginHeaderImage
           keyboardflag = {this.state.keyboardflag}
           emailPwdBtnStr = {'Profile'}
-          headerString = {'Registration'}
+          headerString = {'Cadastre-se'}
         />
         <FirstnameTextInput />
-        <LastnameTextInput />
+        {/* <LastnameTextInput /> */}
         <EmailTextInput />
-        <PhoneTextInput />
+        {/* <PhoneTextInput /> */}
         <ProfileDataButton
           onRegisterPressAndReady = {this.onRegisterPressAndReady.bind(this)}
         />
@@ -116,8 +116,8 @@ class ProfileScreen extends Component {
           <FooterNavButtons
             emailPwdBtnStr={'Profile Screen'}
             onForgotPassword={''}
-            onNavString1={'Already have an account?'}
-            onNavString2={'Sign In now'}
+            onNavString1={'Já possuí uma conta?'}
+            onNavString2={' Fazer Login'}
             onNavPress={
               () => {
                 NavigatorService.reset('login_screen');

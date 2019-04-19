@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import {RkTheme} from 'react-native-ui-kitten';
 import {KittenTheme} from './theme';
+import { DarkKittenTheme } from './darkTheme';
 import {AvatarTypes} from '../components/avatar/types';
 import {GradientButtonTypes} from '../components/gradientButton/types';
 import {SwitchTypes} from '../components/switch/types';
@@ -12,7 +13,8 @@ import {scale, scaleModerate, scaleVertical} from '../utils/scale';
 
 export let bootstrap = () => {
 
-  RkTheme.setTheme(KittenTheme, null);
+  RkTheme.setTheme(DarkKittenTheme, null);
+  // RkTheme.setTheme(KittenTheme, null);
 
   /*
    RkText types

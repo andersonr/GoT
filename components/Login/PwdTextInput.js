@@ -61,7 +61,7 @@ class PwdTextInput extends Component {
       <View style = {styles.emailPwdContainer}>
         <RkTextInput
           rkType='rounded'
-          placeholder='Password'
+          placeholder='Senha'
           secureTextEntry={true}
           value={this.props.password}
           onChangeText={password => this.onPasswordChange(password)}

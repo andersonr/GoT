@@ -18,11 +18,10 @@ class ProfileDataButton extends Component {
 
     if (this.validateInput('firstname', this.props.firstname)
         && this.validateInput('lastname', this.props.lastname)
-        && this.validateInput('email', this.props.email)
-        && this.validateInput('phone', this.props.phone)) {
+        && this.validateInput('email', this.props.email)) {
         this.props.onRegisterPressAndReady();
     } else {
-        this.props.errorSet('Please provide valid profile inputs');
+        this.props.errorSet('Preencha todos os campos obrigatórios');
     }
 
   }
@@ -34,9 +33,9 @@ class ProfileDataButton extends Component {
         return validator.isEmail(inputVal);
       }
 
-      if (inputName == 'phone') {
-        return validator.isMobilePhone(inputVal, 'en-US');
-      }
+      // if (inputName == 'phone') {
+      //   return validator.isMobilePhone(inputVal, 'en-US');
+      // }
 
       if (inputName == 'firstname') {
         return validator.isAscii(inputVal);
@@ -56,7 +55,7 @@ class ProfileDataButton extends Component {
           }}
           rkType='large'
           style={styles.save}
-          text='Proceed to Register'>
+          text='Continuar'>
         </GradientButton>
       </View>
     );
@@ -73,7 +72,10 @@ let styles = RkStyleSheet.create(theme => ({
 
 
 const mapStateToProps = ({ auth }) => {
-  const { email, phone, firstname, lastname } = auth;
+  let { email, phone, firstname, lastname } = auth;
+  lastname = 'h';
+  phone = 9999999999;
+
   return { email, phone, firstname, lastname };
 };
 

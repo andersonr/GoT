@@ -89,7 +89,7 @@ class Welcome_Screen extends Component {
         <GradientButton
           rkType='large'
           style={styles.button}
-          text="GET STARTED"
+          text="Jogar"
           onPress={() => {
             NavigatorService.reset('profile_screen');
             // this.props.navigation.navigate('profile_screen');

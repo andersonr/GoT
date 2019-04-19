@@ -21,7 +21,6 @@ import articles from './../data/raw/articles';
 import { Button } from 'react-native-elements';
 import {FontAwesome} from './../assets/icons';
 
-
 class Menu_Screen extends Component {
 
   static navigationOptions = {
@@ -42,7 +41,7 @@ class Menu_Screen extends Component {
 
   constructor(props) {
     super(props);
-    // this.data = data.getArticles('fact');
+    // // this.data = data.getArticles('fact');
     this.renderItem = this._renderItem.bind(this);
     console.log(articles);
   }
@@ -74,7 +73,7 @@ class Menu_Screen extends Component {
           </View>
           <View rkCardFooter>
             <SocialBar rkType='space' showLabel={true}/>
-          </View >
+          </View>
         </RkCard>
       </TouchableOpacity>
     )

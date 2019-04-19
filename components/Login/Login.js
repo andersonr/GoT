@@ -26,7 +26,7 @@ class Login extends Component {
     super(props)
     this.state = {
       keyboardflag: false,
-      showEmailPwdState: false
+      showEmailPwdState: true
     }
   }
 

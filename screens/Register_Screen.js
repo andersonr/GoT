@@ -17,9 +17,9 @@ class Register_Screen extends Component {
           <Login
             emailPwdBtnStr='SignUp'
             fbBtnStr='Facebook SignUp'
-            showEmailPwdOption={false} // the email password option will be hidden
-            onNavString1='Already have an account?'
-            onNavString2='Sign In now'
+            showEmailPwdOption={true} // the email password option will be hidden
+            onNavString1='Já possuí uma conta?'
+            onNavString2=' Faça Login'
             onNavPress={ () => { NavigatorService.reset('login_screen'); } }
             onForgotPassword={ () => { NavigatorService.reset('reset_screen'); } }
           />
