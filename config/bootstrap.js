@@ -13,7 +13,7 @@ import {scale, scaleModerate, scaleVertical} from '../utils/scale';
 
 export let bootstrap = () => {
 
-  //RkTheme.setTheme(DarkKittenTheme, null);
+   //RkTheme.setTheme(DarkKittenTheme, null);
    RkTheme.setTheme(KittenTheme, null);
 
   /*

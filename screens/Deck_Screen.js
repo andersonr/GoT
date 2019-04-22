@@ -1,8 +1,10 @@
 import React from 'react';
 import Swiper from "react-native-deck-swiper";
+import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, Button } from "react-native";
 import { Constants } from 'expo';
 import { personagens } from '../utils/personagens';
+import { apostaRealizada } from '../actions';
 import {FontAwesome} from './../assets/icons';
 import {
   RkText,
@@ -11,7 +13,7 @@ import {
   RkTheme
 } from 'react-native-ui-kitten';
 
-export default class Deck_Screen extends React.Component {
+class Deck_Screen extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -42,28 +44,27 @@ export default class Deck_Screen extends React.Component {
       const personagemSelecionado = personagens[index];
       console. log('<<<<<  para esquerda ' + JSON.stringify(personagemSelecionado.nome));
 
-      RealizarAposta(personagemSelecionado, false);
+      this.RealizarAposta(personagemSelecionado.id, false);
     };
 
     toRight = index => {      
       const personagemSelecionado = personagens[index];
       console. log('>>>>>  para direita ' + JSON.stringify(personagemSelecionado.nome));
 
-      RealizarAposta(personagemSelecionado, true);
+      this.RealizarAposta(personagemSelecionado.id, true);
     };
 
     toTop = index => {
       const personagemSelecionado = personagens[index];
       console. log('^^^^^^ para cima: ' + JSON.stringify(personagemSelecionado.nome));
       
-      RealizarAposta(personagemSelecionado, true);
       //Fazer aposta como rei de westeros
+      this.RealizarAposta(personagemSelecionado.id, true, true);
     };
 
-    RealizarAposta(personagem, isVivo){
-      //Fazer rotina salvar na base local
-      //Fazer rotina salvar no firebase
-
+    RealizarAposta(personagemId, isVivo, isKing){
+       //Fazer rotina salvar no firebase
+        this.props.apostaRealizada({isVivo, isKing, personagemId})
     }
   
   
@@ -256,3 +257,13 @@ export default class Deck_Screen extends React.Component {
       backgroundColor: "transparent"      
     },
   });
+
+
+  const mapStateToProps = ({ userdata }) => {
+    const { userdetails } = userdata;
+    return { userdetails };
+  };
+  
+  export default connect(mapStateToProps, {
+    apostaRealizada
+  })(Deck_Screen);
