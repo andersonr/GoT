@@ -25,7 +25,6 @@ class OrdersScreen extends Component {
 
   // Donot show header
   static navigationOptions = {
-
     headerTitle: 'Orders',
     tabBarIcon: ({ tintColor }) => (
       <RkText
@@ -38,7 +37,7 @@ class OrdersScreen extends Component {
       </RkText>
     ),
 
-    /*
+    
     header: (headerOptions) => <Header {...headerOptions} />,
     headerStyle: {
        backgroundColor: '#FFFFFF',
@@ -50,7 +49,7 @@ class OrdersScreen extends Component {
       alignSelf:'center',
       marginBottom: Platform.OS === 'ios' ? 0 : 10
     }
-    */
+    
   };
 
   constructor(props) {
@@ -82,7 +81,7 @@ class OrdersScreen extends Component {
     return (
       <View style={styles.container}>
         <Avatar img={require('./../data/img/photo45.png')}
-                rkType='circle'
+                rkType='image'
                 style={styles.avatar}
                 badge={row.type}/>
         <View style={styles.content}>

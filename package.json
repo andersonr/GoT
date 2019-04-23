@@ -16,6 +16,7 @@
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-modal": "^6.5.0",
     "react-native-swiper": "^1.5.13",
+    "react-native-switch-selector": "^1.1.12",
     "react-native-ui-kitten": "^3.0.1",
     "react-native-view-overflow": "0.0.4",
     "react-navigation": "^2.11.2",

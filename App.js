@@ -23,6 +23,7 @@ import Login_Screen from './screens/Login_Screen';
 // import Loading_Screen from './screens/Loading_Screen';
 import Menu_Screen from './screens/Menu_Screen';
 import Deck_Screen from './screens/Deck_Screen';
+import Bets_Screen from './screens/Bets_Screen';
 import Orders_Screen from './screens/Orders_Screen';
 import Location_Screen from './screens/Location_Screen';
 import Profile_Screen from './screens/Profile_Screen';
@@ -81,7 +82,7 @@ settings_screen: { screen: Settings_Screen },
     // const MainNavigator = TabNavigator({
     const MainNavigator = createBottomTabNavigator({
       menu_scr: { screen: Deck_Screen },
-      orders_screen: { screen: Orders_Screen },
+      orders_screen: { screen: Bets_Screen },
       settings_screen: { screen: Settings_Screen },
     },
     {
