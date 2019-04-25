@@ -17,9 +17,10 @@ import {RkChoice, RkText, RkTheme} from 'react-native-ui-kitten';
 import {Avatar} from './../components';
 import notifications from './../data/raw/notifications';
 import {FontAwesome} from './../assets/icons';
+import SegmentedControlTab from "react-native-segmented-control-tab";
 
 class BetsScreen extends Component {
-
+    
     static navigationOptions = {
         headerTitle: 'Apostas',
         tabBarIcon: ({ tintColor }) => (
@@ -47,13 +48,22 @@ class BetsScreen extends Component {
         }        
       };
 
+      alterouAposta = index => {
+
+      }
+
       renderItem = ({item}) => 
              (                
                 <View style={{ padding: 16, flexDirection: "row",  borderBottomColor: 'white', borderBottomWidth: 1 }}>
                     <Image style={{ width: 60, height: 80 }} source={{ uri: item.image }} ></Image>
                     <View style={{alignItems: "center"}}>
                         <Text style={{paddingLeft: 10, color: 'white', fontWeight: "bold", fontSize: 24 }} >{item.nome}</Text>
-                        {/* <SwitchSelector initial={0} options={[{label: 'Morto', value: 'morto'}, {label: 'Vivo', value: 'vivo'}, {label: 'Rei', value: 'rei'}]} /> */}
+                        <SegmentedControlTab
+                          values={["Morre", "Vive", "Rei"]}
+                          selectedIndex={!item.isVivo ? 0 : !item.isKing ? 1 : 2} 
+                          onTabPress={this.alterouAposta}    
+                          style={{ padding: 10 }}                      
+                        />
                     </View>
                 </View>                
             );
