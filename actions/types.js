@@ -22,3 +22,4 @@ export const USERDETAILS_FETCH_SUCCESS = 'userdetails_fetch_success';
 
 
 export const APOSTA_REALIZADA_SUCCESS = 'aposta_realizada_success';
+export const APOSTAS_SELECT_USUARIO = 'apostas_select_usuario';

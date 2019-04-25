@@ -48,22 +48,29 @@ class BetsScreen extends Component {
         }        
       };
 
+      alterou(i, personagen) {
+        
+      }
+
       alterouAposta = index => {
 
       }
 
       renderItem = ({item}) => 
              (                
-                <View style={{ padding: 16, flexDirection: "row",  borderBottomColor: 'white', borderBottomWidth: 1 }}>
+                <View style={{ flex: 1, padding: 16, flexDirection: "row",  borderBottomColor: 'white', borderBottomWidth: 1 }}>
                     <Image style={{ width: 60, height: 80 }} source={{ uri: item.image }} ></Image>
-                    <View style={{alignItems: "center"}}>
+                    <View style={{alignItems: "center", flex: 1}}>
                         <Text style={{paddingLeft: 10, color: 'white', fontWeight: "bold", fontSize: 24 }} >{item.nome}</Text>
-                        <SegmentedControlTab
-                          values={["Morre", "Vive", "Rei"]}
-                          selectedIndex={!item.isVivo ? 0 : !item.isKing ? 1 : 2} 
-                          onTabPress={this.alterouAposta}    
-                          style={{ padding: 10 }}                      
-                        />
+                        <View style={{ alignSelf: "stretch"  }}>
+                          <SegmentedControlTab
+                            values={["Morre", "Rei", "Vive" ]}
+                            selectedIndex={!item.isVivo ? 0 : !item.isKing ? 2 : 1} 
+                            onTabPress={index => { this.alterou(index, item);}}    
+                            tabsContainerStyle={{paddingTop: 10, paddingBottom: 2, paddingLeft: 20, paddingRight: 10, height: 50}}                                                  
+                          />
+                        </View>
+                        
                     </View>
                 </View>                
             );

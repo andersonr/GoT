@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, Button } from "react-native";
 import { Constants } from 'expo';
 import { personagens } from '../utils/personagens';
-import { apostaRealizada } from '../actions';
+import { apostaRealizada, apostasUsuario } from '../actions';
 import {FontAwesome} from './../assets/icons';
 import {
   RkText,
@@ -126,6 +126,12 @@ class Deck_Screen extends React.Component {
       this.swiper.jumpToCardIndex(2);
     };
   
+    componentWillMount(){
+        console.log('apostasUsuario');
+        this.props.apostasUsuario();
+        console.log(this.props.apostas);
+    }
+
     render() {
       if(this.state.swipedAllCards)
       {
@@ -260,10 +266,10 @@ class Deck_Screen extends React.Component {
 
 
   const mapStateToProps = ({ userdata }) => {
-    const { userdetails } = userdata;
-    return { userdetails };
+    const { apostas } = userdata;
+    return { apostas };
   };
   
   export default connect(mapStateToProps, {
-    apostaRealizada
+    apostaRealizada, apostasUsuario
   })(Deck_Screen);
