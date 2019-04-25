@@ -265,9 +265,10 @@ class Deck_Screen extends React.Component {
   });
 
 
-  const mapStateToProps = ({ userdata }) => {
-    const { apostas } = userdata;
-    return { apostas };
+  const mapStateToProps = ({ apostas }) => {
+    console.log(apostas);
+    //const { ...apostas };
+    return { ...apostas };
   };
   
   export default connect(mapStateToProps, {

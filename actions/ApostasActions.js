@@ -30,7 +30,7 @@ import {
           const dados = snapshot.val();
           console.log(dados);
 
-          dispatch({ type: APOSTAS_SELECT_USUARIO, userdata: dados });
+          dispatch({ type: APOSTAS_SELECT_USUARIO, apostas: dados });
         });
     }
   }
